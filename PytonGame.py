@@ -34,7 +34,7 @@ wins = 0
 #МАКСИМАЛЬНЫЕ ПОБЕДЫ
 wins_count = 10
 #обьекты
-object_list = ('best', 'sword', 'apple')
+object_list = ('enemy', 'sword', 'apple')
 
 #здоровье и сила
 def strength_helth_gen() -> int:
@@ -97,7 +97,7 @@ if __name__ == "__main__":
        next_object = change_object(object_list)
        print(f'Рыцарь.сила: {knight_strength},здоровье: {knight_helth}')
        print('Введите 1 - что бы атаковать 2- уйти с позором')
-       if next_object == 'beast':
+       if next_object == 'enemy':
            enemy_helth = strength_helth_gen()
            enemy_strength = strength_helth_gen()
            print(f'Враг. сила: {enemy_strength},здоровье: {enemy_helth}')
@@ -114,33 +114,29 @@ if __name__ == "__main__":
 
        if user_key == '1':
            if next_object == 'apple':
-                knight_helth += apple
-                print(f'Здоровье: {apple}')
+               knight_helth += apple
+               print(f'Здоровье: {apple}')
            if next_object == 'sword':
-                knight_strength = sword
+               knight_strength = sword
            if next_object == 'beast':
-                knight_helth -= enemy_helth
-                enemy_strength -= knight_strength
-                if knight_strength <= 0:
+               knight_helth -= enemy_helth
+               enemy_strength -= knight_strength
+               if knight_helth <= 0:
                     break
  #убитое чудовище
-                if enemy_helth <= 0:
-                    wins += 1
-                    print('Враг повержен')
+               if enemy_helth <= 0:
+                   wins += 1
+                   print('Враг повержен')
 
 
        if user_key == '2':
-            if next_object == 'apple':
-                knight_helth += apple
-                print(f'Увеличение здоровья + {apple}')
+           if next_object == 'apple':
+               knight_helth += apple
+               print(f'Увеличение здоровья + {apple}')
 
-stage +=1
-print('')
-if wins == wins_count:
-    print('Победа')
-else:
-    print('Конец игры')
-
-
-
-
+       stage +=1
+       print('')
+    if wins == wins_count:
+        print('Победа')
+    else:
+        print('Конец игры')
